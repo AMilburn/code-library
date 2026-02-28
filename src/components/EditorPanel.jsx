@@ -12,6 +12,56 @@ const EditorPanel = ({ snippet }) => {
     const [output, setOutput] = useState('');
     const [status, setStatus] = useState('idle'); // idle, success, error
 
+    // Panel resizing state
+    const [verticalSplit, setVerticalSplit] = useState(70); // percentage (top panel)
+    const [bottomSplit, setBottomSplit] = useState(50); // percentage (horizontal split)
+    const [isResizingTop, setIsResizingTop] = useState(false);
+    const [isResizingBottom, setIsResizingBottom] = useState(false);
+
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+            if (isResizingTop) {
+                const workspace = document.querySelector('.workspace');
+                if (workspace) {
+                    const rect = workspace.getBoundingClientRect();
+                    const newHeight = e.clientY - rect.top;
+                    const percentage = (newHeight / rect.height) * 100;
+                    // Clamp percentage
+                    setVerticalSplit(Math.max(20, Math.min(percentage, 80)));
+                }
+            } else if (isResizingBottom) {
+                const bottomContainer = document.querySelector('.bottom-panels');
+                if (bottomContainer) {
+                    const rect = bottomContainer.getBoundingClientRect();
+                    const newWidth = e.clientX - rect.left;
+                    const percentage = (newWidth / rect.width) * 100;
+                    // Clamp split
+                    setBottomSplit(Math.max(20, Math.min(percentage, 80)));
+                }
+            }
+        };
+
+        const handleMouseUp = () => {
+            setIsResizingTop(false);
+            setIsResizingBottom(false);
+        };
+
+        if (isResizingTop || isResizingBottom) {
+            window.addEventListener('mousemove', handleMouseMove);
+            window.addEventListener('mouseup', handleMouseUp);
+            document.body.style.cursor = isResizingTop ? 'row-resize' : 'col-resize';
+            document.body.style.userSelect = 'none';
+        } else {
+            document.body.style.cursor = '';
+            document.body.style.userSelect = '';
+        }
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('mouseup', handleMouseUp);
+        };
+    }, [isResizingTop, isResizingBottom]);
+
     // Reset local state when snippet changes
     useEffect(() => {
         if (snippet) {
@@ -92,13 +142,12 @@ const EditorPanel = ({ snippet }) => {
 
     return (
         <div className="workspace">
-
             {/* Function Body Editor */}
-            <div className="panel">
+            <div className="panel" style={{ height: `${verticalSplit}%`, flexShrink: 0 }}>
                 <div className="panel-header">
                     <span className="panel-title"><Code2 size={16} /> Function Definition</span>
                 </div>
-                <div className="code-editor" style={{ overflow: 'auto', padding: 0 }}>
+                <div className="code-editor" style={{ height: 'calc(100% - 40px)', padding: 0, overflow: 'auto' }}>
                     <Editor
                         value={code}
                         onValueChange={code => setCode(code)}
@@ -107,7 +156,7 @@ const EditorPanel = ({ snippet }) => {
                         style={{
                             fontFamily: 'var(--font-mono)',
                             fontSize: '0.9rem',
-                            minHeight: '200px',
+                            minHeight: '100%',
                             width: '100%',
                             outline: 'none'
                         }}
@@ -115,13 +164,18 @@ const EditorPanel = ({ snippet }) => {
                 </div>
             </div>
 
-            <div className="flex gap-4">
+            <div
+                className={`resizer-v ${isResizingTop ? 'active' : ''}`}
+                onMouseDown={() => setIsResizingTop(true)}
+            />
+
+            <div className="bottom-panels flex flex-1 overflow-hidden" style={{ minHeight: 0 }}>
                 {/* Arguments Editor */}
-                <div className="panel flex-1">
+                <div className="panel" style={{ width: `${bottomSplit}%`, flexShrink: 0 }}>
                     <div className="panel-header">
                         <span className="panel-title"><FileJson size={16} /> Execution Arguments (JSON)</span>
                     </div>
-                    <div className="code-editor arguments-editor" style={{ overflow: 'auto', padding: 0 }}>
+                    <div className="code-editor arguments-editor" style={{ height: 'calc(100% - 40px)', padding: 0, overflow: 'auto' }}>
                         <Editor
                             value={args}
                             onValueChange={args => setArgs(args)}
@@ -130,13 +184,18 @@ const EditorPanel = ({ snippet }) => {
                             style={{
                                 fontFamily: 'var(--font-mono)',
                                 fontSize: '0.9rem',
-                                minHeight: '100px',
+                                minHeight: '100%',
                                 width: '100%',
                                 outline: 'none'
                             }}
                         />
                     </div>
                 </div>
+
+                <div
+                    className={`resizer-h ${isResizingBottom ? 'active' : ''}`}
+                    onMouseDown={() => setIsResizingBottom(true)}
+                />
 
                 {/* Execution Controls & Output */}
                 <div className="panel flex-1">
@@ -153,7 +212,7 @@ const EditorPanel = ({ snippet }) => {
                         </div>
                     )}
 
-                    <div className="output-area">
+                    <div className="output-area" style={{ flex: 1, overflowY: 'auto' }}>
                         {output || <span style={{ color: 'var(--text-secondary)', opacity: 0.5 }}>No output yet. Click Execute...</span>}
                     </div>
                 </div>
