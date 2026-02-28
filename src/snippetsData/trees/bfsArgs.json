@@ -1,0 +1,36 @@
+{
+    "tree": {
+        "id": "1",
+        "value": "CEO",
+        "children": [
+            {
+                "id": "2",
+                "value": "VP Sales",
+                "children": [
+                    {
+                        "id": "4",
+                        "value": "Director AM",
+                        "children": []
+                    },
+                    {
+                        "id": "5",
+                        "value": "Director EMEA",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": "3",
+                "value": "VP Engineering",
+                "children": [
+                    {
+                        "id": "6",
+                        "value": "Director Frontend",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    "targetValue": "Director AM"
+}

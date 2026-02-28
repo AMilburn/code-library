@@ -1,0 +1,41 @@
+{
+    "tree": {
+        "id": "root",
+        "value": "Home",
+        "children": [
+            {
+                "id": "docs",
+                "value": "Documents",
+                "children": [
+                    {
+                        "id": "work",
+                        "value": "Work Files",
+                        "children": []
+                    },
+                    {
+                        "id": "personal",
+                        "value": "Tax Returns",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": "pics",
+                "value": "Pictures",
+                "children": [
+                    {
+                        "id": "vacation",
+                        "value": "Hawaii 2024",
+                        "children": []
+                    },
+                    {
+                        "id": "pets",
+                        "value": "Dog Pics",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    "targetValue": "Tax Returns"
+}
