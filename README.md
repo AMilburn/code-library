@@ -1,16 +1,49 @@
-# React + Vite
+# JS Code Library & Playground
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the **JS Code Library & Playground**!
 
-Currently, two official plugins are available:
+This application serves as an interactive playground and central repository for learning, testing, and documenting core coding concepts, data structures, and algorithms.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Purpose
 
-## React Compiler
+The primary goal of this project is to provide a clean, intuitive, and dynamic environment where you can:
+- **Explore Core Concepts**: Browse through categorized snippets of fundamental algorithms (e.g., Tree Traversals like BFS/DFS, Array manipulations, etc.).
+- **Interactive Execution**: Test the code snippets on the fly against editable JSON arguments in a customized sandbox.
+- **Learn & Document**: Each snippet is paired with documentation on its use cases and implementation details to help solidify understanding.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+- **Three-Column Layout**: 
+  - A navigation sidebar on the left to browse categories and snippets.
+  - A central interactive workspace for live code definition and JSON argument execution.
+  - A persistent right-hand panel detailing the purpose and description of the selected algorithm.
+- **Live Syntax Highlighting**: Editing functional JavaScript and JSON models directly with `prismjs` powered highlights.
+- **Dynamic Output**: Safely intercepting console logs and return values directly on the page.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Getting Started
+
+1. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+
+2. **Run the Development Server**:
+   ```bash
+   npm run dev
+   ```
+
+3. **Build for Production**:
+   ```bash
+   npm run build
+   ```
+
+## Live Demo
+
+View the live application at: https://AMilburn.github.io/code-library
+
+## Tech Stack
+- React
+- Vite
+- Vanilla CSS
+- `lucide-react` for icons
+- `react-simple-code-editor` and `prismjs` for syntax highlighting
