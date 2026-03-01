@@ -1,0 +1,36 @@
+{
+    "tree": {
+        "id": "1",
+        "value": "root",
+        "children": [
+            {
+                "id": "2",
+                "value": "branch-a",
+                "children": [
+                    {
+                        "id": "4",
+                        "value": "leaf-a1",
+                        "children": [
+                            {
+                                "id": "6",
+                                "value": "deep-leaf",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "3",
+                "value": "branch-b",
+                "children": [
+                    {
+                        "id": "5",
+                        "value": "leaf-b1",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    }
+}

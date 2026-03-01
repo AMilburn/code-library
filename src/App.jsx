@@ -23,6 +23,17 @@ function App() {
       <aside className="right-panel">
         <h2>{activeSnippet ? activeSnippet.title : 'Select a snippet'}</h2>
         <p>{activeSnippet ? activeSnippet.description : 'Explore algorithms, data structures, and utilities.'}</p>
+
+        {activeSnippet && activeSnippet.notes && (
+          <>
+            <h3>Notes</h3>
+            <ul className="notes-list">
+              {activeSnippet.notes.map((note, index) => (
+                <li key={index}>{note}</li>
+              ))}
+            </ul>
+          </>
+        )}
       </aside>
     </div>
   );
