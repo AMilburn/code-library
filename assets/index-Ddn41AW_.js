@@ -343,7 +343,7 @@ function reconstructTree(inOrder, preOrder) {
 
     // STEP 4: Recursively build subtrees, resetting the root each time.
     return [
-        rootValue,
+        root,
         reconstructTree(leftInOrder, leftPreOrder),
         reconstructTree(rightInOrder, rightPreOrder)
     ];
