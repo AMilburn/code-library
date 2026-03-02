@@ -8,6 +8,8 @@ import maxDepthCode from './snippetsData/trees/maxDepth.js?raw';
 import maxDepthArgs from './snippetsData/trees/maxDepthArgs.json?raw';
 import iterativeDfsCode from './snippetsData/trees/iterativeDfs.js?raw';
 import iterativeDfsArgs from './snippetsData/trees/iterativeDfsArgs.json?raw';
+import reconstructTreeCode from './snippetsData/trees/reconstructTree.js?raw';
+import reconstructTreeArgs from './snippetsData/trees/reconstructTreeArgs.json?raw';
 
 export const codeSnippets = [
   {
@@ -67,6 +69,22 @@ export const codeSnippets = [
     ],
     code: iterativeDfsCode,
     argsModel: iterativeDfsArgs
+  },
+  {
+    id: 'tree-reconstruction',
+    category: 'Trees',
+    title: 'Reconstruct Tree',
+    description: 'Rebuilds a binary tree using its in-order and pre-order traversal sequences.',
+    notes: [
+      'You need to have In-Order traversal alongside either Pre-Order or Post-Order to reconstruct a binary tree.',
+      'Most Important Part: Locating the root node. In Pre-Order, the root is always the first element.',
+      'Subtree Determination: Once the root is found in the In-Order sequence, all elements to its left form the Left subtree, and vice-versa.',
+      'Recursive Setup: Every recursive call "resets" the root for the next level until the entire tree is bridged.',
+      'Termination: The base case check for an empty sequence is what "closes" the recursion effectively.',
+      'Format: This specific implementation returns the tree as a nested array: [root, left, right].'
+    ],
+    code: reconstructTreeCode,
+    argsModel: reconstructTreeArgs
   },
   {
     id: 'array-contiguous-max',
