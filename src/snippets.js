@@ -10,6 +10,8 @@ import iterativeDfsCode from './snippetsData/trees/iterativeDfs.js?raw';
 import iterativeDfsArgs from './snippetsData/trees/iterativeDfsArgs.json?raw';
 import reconstructTreeCode from './snippetsData/trees/reconstructTree.js?raw';
 import reconstructTreeArgs from './snippetsData/trees/reconstructTreeArgs.json?raw';
+import lruCacheCode from './snippetsData/linkedLists/lruCache.js?raw';
+import lruCacheArgs from './snippetsData/linkedLists/lruCache.json?raw';
 
 export const codeSnippets = [
   {
@@ -99,6 +101,20 @@ export const codeSnippets = [
     ],
     code: maxSubArrayCode,
     argsModel: maxSubArrayArgs
+  },
+  {
+    id: 'linked-list-lru-cache',
+    category: 'Linked Lists',
+    title: 'LRU Cache',
+    description: 'Least Recently Used (LRU) Cache implementation using a Doubly Linked List and a Hash Map.',
+    notes: [
+      'Mechanism: Uses a Hash Map for O(1) key lookup and a Doubly Linked List for O(1) order management.',
+      'Replacement Policy: When capacity is reached, the Least Recently Used (LRU) item is evicted.',
+      'Refresh: Every `get` or `put` operation on an existing key moves that node to the "Most Recently Used" position.',
+      'Complexity: Both `get` and `put` operations run in O(1) time.'
+    ],
+    code: lruCacheCode,
+    argsModel: lruCacheArgs
   }
 ];
 
