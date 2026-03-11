@@ -12,6 +12,10 @@ import reconstructTreeCode from './snippetsData/trees/reconstructTree.js?raw';
 import reconstructTreeArgs from './snippetsData/trees/reconstructTreeArgs.json?raw';
 import lruCacheCode from './snippetsData/linkedLists/lruCache.js?raw';
 import lruCacheArgs from './snippetsData/linkedLists/lruCache.json?raw';
+import slidingWindowAverageCode from './snippetsData/arrays/slidingWindowAverage.js?raw';
+import slidingWindowAverageArgs from './snippetsData/arrays/slidingWindowAverageArgs.json?raw';
+import numIslandsCode from './snippetsData/grids/numIslands.js?raw';
+import numIslandsArgs from './snippetsData/grids/numIslandsArgs.json?raw';
 
 export const codeSnippets = [
   {
@@ -103,6 +107,20 @@ export const codeSnippets = [
     argsModel: maxSubArrayArgs
   },
   {
+    id: 'array-sliding-window-max-average',
+    category: 'Arrays',
+    title: 'Sliding Window Max Average',
+    description: 'Finds the contiguous subarray of length k that has the maximum average value.',
+    notes: [
+      'O(n) time complexity.',
+      'O(1) space complexity.',
+      'Uses the sliding window technique to avoid redundant calculations.',
+      'Update Rule: `sum = sum + next_element - previous_element_outside_window`'
+    ],
+    code: slidingWindowAverageCode,
+    argsModel: slidingWindowAverageArgs
+  },
+  {
     id: 'linked-list-lru-cache',
     category: 'Linked Lists',
     title: 'LRU Cache',
@@ -115,6 +133,20 @@ export const codeSnippets = [
     ],
     code: lruCacheCode,
     argsModel: lruCacheArgs
+  },
+  {
+    id: 'grid-num-islands',
+    category: 'Grids',
+    title: 'Connected Components',
+    description: 'Counts the number of distinct islands in a 2D binary grid using Breadth-First Search (BFS).',
+    notes: [
+      'Algorithm: Uses BFS to traverse and mark all land nodes belonging to the same island.',
+      'MARKING: To avoid repeatedly visiting nodes, land cells are "sunk" (flipped from "1" to "0") after being added to the queue.',
+      'Complexity: O(M * N) time and space (where M is rows and N is columns).',
+      'Aesthetics: Grid navigation problems are classic examples of graph traversal patterns applied to 2D arrays.'
+    ],
+    code: numIslandsCode,
+    argsModel: numIslandsArgs
   }
 ];
 
